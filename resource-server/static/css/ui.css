@@ -1,0 +1,14 @@
+.collapsible {
+    display:none;
+}
+.showing {
+    display:block!important;
+}
+
+.hidden-elem {
+    display:none!important;
+}
+
+.hero-body {
+    align-items: start !important;
+}

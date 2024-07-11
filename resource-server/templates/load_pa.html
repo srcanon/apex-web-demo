@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="/static/js/config.js"></script>
+<script src="/static/js/pa-handler.js"></script>
+<div class="column is-4 is-offset-4">
+    <input type="hidden" id="jsonData" value="{{ data }}">
+    <h3 class="title">Provider Agent Launcher</h3>
+    <div id="intermediary" class="box hidden-elem>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+        <p>Waiting for response from Provider Agent Device...</p>
+        <div id="progressIndicator" class="fa-3x">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+    </div>
+    <div id="direct" class="box hidden-elem">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+        <button id="openPAButton" onclick="loadProviderAgent()" class="button is-block is-info is-large is-fullwidth">Open Provider Agent</button>
+        <div id="progressIndicator" class="fa-3x hidden-elem">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+    </div>
+</div>
+{% endblock %}

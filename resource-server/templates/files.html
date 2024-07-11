@@ -1,0 +1,38 @@
+{% extends "ui_base.html" %}
+
+{% block content %}
+
+<div class="columns">
+  <div class="column is-one-fifth has-text-left">
+    <aside class="menu">
+      <p class="menu-label">
+        Storage
+      </p>
+      <ul id="root-files" class="menu-list">
+        
+      </ul>
+      
+    </aside>
+    
+  </div>
+  <div class="column">
+    <nav id="breadcrumbs" class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        
+      </ul>
+    </nav>
+    <nav class="panel" id="filesPanel">
+      
+      
+    </nav>
+  </div>
+  
+</div>
+
+
+<input type="file" name="file" id="file" onchange="uploadFile()" hidden>
+<input type="hidden" name="user_id" id="user_id" value="{{ id }}">
+<button class="button" onclick="getList()">Refresh</button>
+<button class="button" onclick="createDirectory()">Create Directory</button>
+<button class="button" onclick="showFileDialog()">Upload File</button>
+{% endblock %}

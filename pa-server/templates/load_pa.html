@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<script src="/static/js/config.js"></script>
+<script src="/static/js/keystore.js"></script>
+<script src="/static/js/provider-agent.js"></script>
+<script src="/static/js/base64.js"></script>
+<div class="column is-4 is-offset-4">
+    <h3 class="title">MyDrive Provider Agent</h3>
+    <div class="box hidden-elem">
+        <div id="progressIndicator" class="fa-3x">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+    </div>
+    <div id="verifyUrlBlock" class="box hidden-elem">
+        <p>The following Client is requesting access to your MyDrive service:</p>
+        <div class="verify-url" id="verifyUrl"></div>
+        <p>Click Authorize to continue or Deny to cancel</p>
+        <button id="verifyDeny" onclick="verifyDeny()" class="button is-info is-large">Deny</button>    
+        <button id="verifyAuthorize" onclick="verifyAuthorize()" class="button is-info is-large">Authorize</button>    
+    </div>
+    <div id="OTPBlock" class="box hidden-elem">
+        <p>Please enter the OTP provided by the Client:</p>
+        <input type="text" class="input is-large otp-entry" id="OTP">
+        <button id="otpBtn" onclick="calculateOTP()" class="button is-block is-info is-large is-fullwidth">Continue</button>    
+        
+    </div>
+    <div id="saveBlock" class="box hidden-elem">
+        <p>Saving Data</p>
+        <i class="fa-solid fa-spinner fa-spin-pulse large-spinner"></i>
+    </div>
+    <div id="retrieveBlock" class="box hidden-elem">
+        <p>Retrieving Data</p>
+        <div class="spinner-div">
+        <i class="fa-solid fa-spinner fa-spin-pulse large-spinner"></i>
+        </div>
+    </div>
+
+
+    
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+  <h3 class="title">Register Client</h3>
+  <div class="box has-text-left">
+    <form action="" method="post">
+      <div class="field">
+        <label>Client Name</label>
+        <div class="control">
+            <input class="input" type="text" name="client_name">
+        </div>
+      </div>
+      <div class="field">
+        <label>Client URI</label>
+        <div class="control">
+        <input class="input" type="url" name="client_uri">
+      </div>
+    </div>
+      <div class="field">
+        <label>Allowed Scope</label>
+        <div class="control">
+        <input class="input" type="text" name="scope" value="full">
+      </div>
+    </div>
+    <div class="field">
+      <label>Redirect URIs</label>
+      <div class="control">
+        <textarea class="textarea" name="redirect_uri" cols="30" rows="4"></textarea>
+      </div>
+    </div>
+      <div class="field">
+        <label>Allowed Grant Types</label>
+        <div class="control">
+        <textarea class="textarea" name="grant_type" cols="30" rows="4">authorization_code
+refresh_token
+        </textarea>
+      </div>
+    </div>
+      <div class="field">
+        <label>Allowed Response Types</label>
+        <div class="control">
+        <textarea class="textarea" name="response_type" cols="30" rows="4">code</textarea>
+      </div>
+    </div>
+      <div class="field">
+        <label>Token Endpoint Auth Method</label>
+        <div class="control">
+        <select class="select" name="token_endpoint_auth_method">
+          <option value="client_secret_basic">client_secret_basic</option>
+          <option value="client_secret_post">client_secret_post</option>
+          <option value="none">none</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label>Client Public Key Endpoint</label>
+      <div class="control">
+      <input class="input" type="url" name="pk_endpoint">
+    </div>
+    </div>
+    <div class=" has-text-centered">
+      <button class="button">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

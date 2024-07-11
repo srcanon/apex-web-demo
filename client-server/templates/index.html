@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+        
+<div class="valign-wrapper" style="flex:1">
+  <div style="width:100%">  
+  <h4 class="center-align" >
+  Simple Note Taker App
+</h4>
+{% if current_user.is_authenticated %}
+<div class=" center-align">
+<a class="waves-effect waves-light btn" href="/notes">Go To My Notes</a>
+</div>
+{% else %}
+<h5 class="center-align" >
+  Login to create and edit notes
+</h5>
+{% endif %}
+
+</div>
+</div>
+</div>
+{% endblock %}

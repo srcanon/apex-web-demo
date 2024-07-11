@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple Note Taker</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link rel="stylesheet" href="/static/css/ui.css" />
+    <link rel="stylesheet" href="/static/css/menu.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <script src="/static/js/editor.js"></script>
+    <script src="/static/js/client_agent_handler.js"></script>
+
+</head>
+<body onload="loadEditor();loadFiles()">
+    <input type="hidden" id="isLinked" value="{{ current_user.is_linked }}">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"><img class="logoimg" src="/static/images/notelogo.png"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a href="{{ url_for('main.index') }}" class="navbar-item">
+                        Home
+                    </a>
+                </li>
+
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a href="{{ url_for('notes.index') }}" class="navbar-item">
+                        Notes
+                    </a>
+                </li>
+                {% endif %}
+                {% if not current_user.is_authenticated %}
+                <li>
+                    <a href="{{ url_for('auth.login') }}" class="navbar-item">
+                        Login
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('auth.signup') }}" class="navbar-item">
+                        Sign Up
+                    </a>
+                </li>
+                {% endif %}
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a href="{{ url_for('auth.logout') }}" class="navbar-item">
+                        Logout
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+    <ul id="slide-out" class="sidenav sidenav-fixed show-menu-bar">
+        {% if current_user.is_linked %}
+        <li><a class="btn" onclick="createNewNote()" href="#">Create New Note</a></li>
+        <li><a class="btn" onclick="createNewAPEXNote()" href="#">Create New APEX Note</a></li>
+        {% else %}
+        <li><a class="btn disabled">Create New Note</a></li>
+        {% endif %}
+        <li><a class="subheader">Notes</a></li>
+        {% if current_user.is_linked %}
+
+        {% else %}
+        <li><a class="btn" onclick="startLink()" href="#">Link to MyDrive</a></li>
+
+        {% endif %}
+
+
+
+    </ul>
+    <div id="otpModal" class="modal">
+        <div class="modal-content">
+            <h4>One-Time Passcode</h4>
+            <p>The following is your One-Time Passcode (OTP) that will be requested by the your storage provider to
+                authorise the linking request.</p>
+            <p id="otpCode" class="otp-code"></p>
+            <p>Click the <b>Continue</b> to proceed with linking to your storage provider. Or click <b>Cancel</b> if you
+                do not wish to proceed.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <a onclick="proceedWithLinking()" href="#"
+                class="modal-close waves-effect waves-green btn-flat">Continue</a>
+        </div>
+    </div>
+
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+    <footer class="red lighten-2 white-text">
+        <div>Copyright</div>
+    </footer>
+
+
+</body>
+
+</html>

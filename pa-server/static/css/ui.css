@@ -1,0 +1,22 @@
+.collapsible {
+    display:none;
+}
+.showing {
+    display:block!important;
+}
+
+.hidden-elem {
+    display:none!important;
+}
+.large-spinner {
+    float: none!important;
+    font-size:46pt;
+    
+}
+.spinner-div{
+    text-align: center;
+}
+.otp-entry{
+    font-weight:bold;
+    text-align: center;
+}
